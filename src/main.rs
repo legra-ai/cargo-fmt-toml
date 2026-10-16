@@ -22,30 +22,13 @@
 //! 4. Nested-table → inline collapse in `[package]` and dependency tables
 
 use std::collections::BTreeMap;
-use std::path::{
-    Path,
-    PathBuf,
-};
+use std::path::{Path, PathBuf};
 
-use anyhow::{
-    Context,
-    Result,
-};
-use async_fs_io::{
-    canonicalize,
-    read_string_bounded,
-    symlink_metadata,
-    write_bytes,
-};
+use anyhow::{Context, Result};
+use async_fs_io::{canonicalize, read_string_bounded, symlink_metadata, write_bytes};
 use cargo_plugin_utils::ProgressLogger;
 use clap::Parser;
-use toml_edit::{
-    DocumentMut,
-    InlineTable,
-    Item,
-    Table,
-    Value,
-};
+use toml_edit::{DocumentMut, InlineTable, Item, Table, Value};
 
 /// Preferred order of top-level logical tables in `Cargo.toml`.
 ///
