@@ -166,3 +166,11 @@ Copyright © 2026 DataRoad Inc, Delaware, USA, trading as Legra.
 
 Licensed under either the [MIT license](LICENSE-MIT) or the
 [Apache License, Version 2.0](LICENSE-APACHE), at your option.
+
+## Validation in CI
+
+Use `cargo fmt-toml --check --quiet` as the nonmutating CI predicate.
+It exits 1 when any package or virtual workspace root needs formatting.
+Formatting includes workspace dependency keys and preserves manifest
+values, dependency versions and feature definitions. `--version` reports
+the installed package version.

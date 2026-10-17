@@ -14,25 +14,14 @@ homepage = "https://github.com/legra-ai/cargo-fmt-toml"
 rust-version = "1.94.1"
 publish = true
 
-exclude = [
-    ".cargo/",
-    ".cargo-husky/",
-    ".clippy.toml",
-    ".cursor/",
-    ".github/",
-    ".gitignore",
-    ".rust-toolchain.toml",
-    ".vscode/",
-    "cog.toml",
-    "rustfmt.toml",
-]
+include = ["src/**", "tests/**", "build.rs", "Cargo.toml", "Cargo.lock", "README.md", "LICENSE-MIT", "LICENSE-APACHE"]
 
 [[bin]]
 name = "cargo-fmt-toml"
 path = "src/main.rs"
 
 [dependencies]
-async-fs-io = "0.1.5"
+async-fs-io = "0.2.2"
 anyhow = "1.0.104"
 cargo_metadata = "0.23.1"
 clap = { version = "4.6.6", features = ["derive", "env"] }
@@ -40,12 +29,11 @@ serde = { version = "1", features = ["derive"] }
 taplo = "0.14.0"
 toml = "1.1.4"
 toml_edit = "0.25.13"
-cargo-plugin-utils = "0.0.12"
+cargo-plugin-utils = "0.0.17"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [build-dependencies]
-cargo-version-info = { version = "0.0.21", default-features = false }
-rhusky = "0.0.6"
+rhusky = "2.0.1"
 
 [dev-dependencies]
 

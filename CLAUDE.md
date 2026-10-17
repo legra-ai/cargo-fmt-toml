@@ -36,7 +36,7 @@ all repositories.
 dependency **keys**, nested-table collapse). It does **not** change versions,
 rewrite dependency specs to `workspace = true`, or propagate features.
 
-[`cargo-propagate-features`](https://github.com/dataroadinc/cargo-propagate-features)
+[`cargo-propagate-features`](https://github.com/legra-ai/cargo-propagate-features)
 edits `[features]` so enabling `X` on a crate enables `X` on dependencies that
 define the same feature. Use it for feature-graph correctness; use
 `cargo-fmt-toml` for consistent manifest structure. README.md has a comparison
@@ -76,13 +76,13 @@ cargo fmt-toml [OPTIONS]
 cargo test
 
 # Format check (requires nightly)
-cargo +nightly fmt --all -- --check
+sh scripts/fmt.sh --check
 
 # Format code
-cargo +nightly fmt --all
+sh scripts/fmt.sh
 
-# Clippy (requires nightly)
-cargo +nightly clippy --all-targets --all-features -- -D warnings -W missing-docs
+# Clippy (pinned compiler)
+cargo clippy --all-targets --all-features -- -D warnings -W missing-docs
 ```
 
 ## Code Style
@@ -90,7 +90,7 @@ cargo +nightly clippy --all-targets --all-features -- -D warnings -W missing-doc
 - **Rust Edition**: 2024, MSRV 1.94.1
 - **Formatting**: Uses nightly rustfmt with vertical imports grouped
   by std/external/crate
-- **Clippy**: Nightly with strict settings (max 120 lines/function,
+- **Clippy**: Pinned compiler with strict settings (max 120 lines/function,
   nesting threshold 5)
 - **Disallowed variable names**: foo, bar, baz, qux, i, n
 
@@ -108,28 +108,14 @@ Key dependencies:
 - `clap`: CLI argument parsing with derive macros
 - `toml_edit`: Preserves TOML formatting during edits
 - `cargo_plugin_utils`: Workspace package discovery via cargo_metadata
-- `cargo-version-info`: Dynamic version computation in build.rs
+- Shared release preparation computes versions in CI; binaries embed Cargo package metadata.
 
-## Version Management
+## Version management
 
-Use `cargo version-info bump` for version management. This command
-updates Cargo.toml and creates a commit, but does NOT create tags
-(tags are created by CI after tests pass).
-
-```bash
-cargo version-info bump --patch   # 0.0.1 -> 0.0.2
-cargo version-info bump --minor   # 0.1.0 -> 0.2.0
-cargo version-info bump --major   # 1.0.0 -> 2.0.0
-```
-
-**Do NOT use `cog bump`** - it creates local tags which conflict
-with CI's tag creation workflow.
-
-**Workflow:**
-
-1. Create PR with version bump commit
-2. Merge PR to main
-3. CI detects version change, creates tag, publishes release
+`CI` is the sole publisher. The shared tested-revision pipeline prepares
+signed versions on main, tests shipped archives on three platforms, and
+builds six binary targets before publication. See `.github/PUBLISH.md`.
+Do not add another publisher or manually move release tags.
 
 ## Git workflow
 

@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
-set -euo pipefail
 
 # Usage: commit-msg <path-to-commit-message>
-MSG_FILE="$1"
+MSG_FILE="${1:?commit message path is required}"
 
 # Require cocogitto to be installed
 if ! command -v cog >/dev/null 2>&1; then
@@ -18,7 +17,8 @@ fi
 
 # Enforce: scope is mandatory, e.g. feat(api): ...
 # Accepts letters for type, and scope with [a-z0-9./-]
-if ! grep -E -q '^[a-z]+\([a-z0-9][a-z0-9./-]*\)(!:)?\: ' "$MSG_FILE"; then
+IFS= read -r headline < "$MSG_FILE" || exit 1
+if ! printf '%s\n' "$headline" | grep -E -q '^[a-z]+\([a-z0-9][a-z0-9./-]*\)!?: '; then
   echo "Commit message must include a scope, e.g.: feat(backend): add endpoint" >&2
   exit 1
 fi

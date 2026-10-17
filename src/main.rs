@@ -9,7 +9,7 @@
 //! It does **not** move versions into `[workspace.dependencies]`, rewrite
 //! crates to `workspace = true`, or edit `[features]` to propagate flags to
 //! dependencies. For that, use
-//! [`cargo-propagate-features`](https://github.com/dataroadinc/cargo-propagate-features),
+//! [`cargo-propagate-features`](https://github.com/legra-ai/cargo-propagate-features),
 //! which wires `dep/feature` entries so enabling a feature on one crate enables
 //! the same-named features on its deps—while **this** crate only normalizes
 //! manifest layout (section order, key order, TOML shape) without changing
@@ -207,7 +207,8 @@ async fn workspace_member_manifest_paths(workspace_root: &Path) -> Result<Vec<Pa
         .exec()
         .context("Failed to get cargo metadata (workspace packages only)")?;
 
-    let mut paths: Vec<PathBuf> = Vec::new();
+    // Include the root manifest even when the workspace is virtual.
+    let mut paths = vec![manifest_path];
     for pkg in metadata.packages {
         let path = pkg.manifest_path.as_std_path();
         let canonical = canonicalize(path)
@@ -345,6 +346,17 @@ async fn format_manifest(
     changes += sort_dependencies(&mut doc, "dependencies", logger)?;
     changes += sort_dependencies(&mut doc, "dev-dependencies", logger)?;
     changes += sort_dependencies(&mut doc, "build-dependencies", logger)?;
+
+    // Workspace dependency declarations follow the same layout contract.
+    if let Some(dependencies) = doc
+        .get_mut("workspace")
+        .and_then(Item::as_table_mut)
+        .and_then(|workspace| workspace.get_mut("dependencies"))
+        .and_then(Item::as_table_mut)
+    {
+        changes += collapse_table_entries(dependencies);
+        changes += sort_table_in_place(dependencies, logger)?;
+    }
 
     // 5. Sort target-specific dependencies
     if let Some(target_table) = doc.get_mut("target").and_then(|t| t.as_table_mut()) {
@@ -1453,28 +1465,13 @@ disallowed-types = [\"serde_json::Value\"]
         );
     }
 
-    #[tokio::test]
-    async fn reorder_actual_test_file() {
-        // Test with the actual file content from /tmp that triggers
-        // the parse error.
-        let Some(input) = async_fs_io::read_string_bounded_if_exists(
-            "/tmp/cargo-fmt-toml-test-case.toml",
-            16 * 1024 * 1024,
-        )
-        .await
-        .expect("read test file") else {
-            // Skip if the test file doesn't exist
-            return;
-        };
-        let result = full_format(&input);
-
-        // Verify the output is valid TOML
-        let reparsed = result.parse::<DocumentMut>();
-        assert!(
-            reparsed.is_ok(),
-            "Output is not valid TOML:\n{result}\nError: {}",
-            reparsed.unwrap_err()
-        );
+    #[test]
+    fn reorder_shipped_workspace_fixture() {
+        let input = include_str!("../tests/fixtures/workspace.toml");
+        let result = full_format(input);
+        result
+            .parse::<DocumentMut>()
+            .expect("formatted workspace remains valid TOML");
     }
 
     #[test]
