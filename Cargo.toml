@@ -33,7 +33,7 @@ cargo-plugin-utils = "0.0.15"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [build-dependencies]
-rhusky = "1.0.2"
+rhusky = "2.0.0"
 
 [dev-dependencies]
 

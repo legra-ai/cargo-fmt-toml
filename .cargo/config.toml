@@ -1,5 +1,3 @@
 [build]
 rustflags = ["-Dwarnings", "-Wmissing-docs"]
 
-[env]
-RHUSKY_REPOSITORY_ROOT = { value = ".", relative = true, force = true }
