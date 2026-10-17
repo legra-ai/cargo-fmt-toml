@@ -59,7 +59,7 @@ class CommitMessageTests(unittest.TestCase):
             root = Path(directory)
             cog = root / 'cog'
             # Isolate the scope/headline gate; cocogitto has its own type parser.
-            cog.write_text('#!/bin/sh\nexit 0\n')
+            cog.write_text('#!/bin/sh\nexit 0\n', newline='\n')
             cog.chmod(0o755)
             message = root / 'message'
             env = {**os.environ, 'PATH': str(root) + os.pathsep + os.environ['PATH']}
@@ -69,10 +69,13 @@ class CommitMessageTests(unittest.TestCase):
                 ('unscoped headline', '\nfix(ci): forged body\n', 1),
             ]:
                 with self.subTest(headline=headline):
-                    message.write_text(headline + '\n' + body)
-                    result = subprocess.run(['bash', str(ROOT / '.githooks/commit-msg'), str(message)],
+                    message.write_text(headline + '\n' + body, newline='\n')
+                    # Windows also provides a WSL bash; use Git's own shell.
+                    shell = (Path(subprocess.check_output(['git', '--exec-path'], text=True).strip()).parents[2]
+                             / 'bin/bash.exe') if os.name == 'nt' else 'bash'
+                    result = subprocess.run([str(shell), str(ROOT / '.githooks/commit-msg'), str(message)],
                                             env=env, capture_output=True, text=True)
-                    self.assertEqual(result.returncode, expected, result.stderr)
+                    self.assertEqual(result.returncode, expected, result.stdout + result.stderr)
 
 
 if __name__ == '__main__':
