@@ -21,7 +21,7 @@ name = "cargo-fmt-toml"
 path = "src/main.rs"
 
 [dependencies]
-async-fs-io = "0.1.5"
+async-fs-io = "0.2.2"
 anyhow = "1.0.104"
 cargo_metadata = "0.23.1"
 clap = { version = "4.6.6", features = ["derive", "env"] }
@@ -33,7 +33,7 @@ cargo-plugin-utils = "0.0.15"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [build-dependencies]
-rhusky = "2.0.0"
+rhusky = "2.0.1"
 
 [dev-dependencies]
 
