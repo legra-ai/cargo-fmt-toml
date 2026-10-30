@@ -1,7 +1,7 @@
 [package]
 name = "cargo-fmt-toml"
 description = "Cargo subcommand to format and normalize Cargo.toml layout (section order, sorted dep keys, TOML shape)"
-version = "1.0.6"
+version = "1.0.7"
 edition = "2024"
 license = "MIT OR Apache-2.0"
 keywords = ["cargo", "toml", "format", "cli", "workspace"]
@@ -29,7 +29,7 @@ serde = { version = "1", features = ["derive"] }
 taplo = "0.14.0"
 toml = "1.1.4"
 toml_edit = "0.25.13"
-cargo-plugin-utils = "0.0.19"
+cargo-plugin-utils = "0.0.21"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [build-dependencies]
