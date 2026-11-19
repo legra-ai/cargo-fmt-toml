@@ -97,9 +97,9 @@ dependencies = [
 
 [[package]]
 name = "async-fs-io"
-version = "0.2.6"
+version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5424427a0bd330cdf41109614f58d2924084123a31d8a3e72065c2f9709f9e3f"
+checksum = "22ee86df5f69a9f166546661d3c4faf4ca68e12959a51c068761c65a4812ce38"
 dependencies = [
  "fs2",
  "thiserror 2.0.21",
@@ -458,7 +458,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e35d6e78f4cebb90e51d543db8fe41528851d6deeef6ef21ebd4bfdc1e784776"
 dependencies = [
  "libc",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1705,9 +1705,9 @@ checksum = "d6f6ff9a378485b298a5286656da665ba74413d36db0979633275d2e708145d4"
 
 [[package]]
 name = "rhusky"
-version = "2.0.8"
+version = "2.0.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "37a3345846735283e542b11bb17c8fd359643a09e806993b4e7494fed323c256"
+checksum = "60514b501785fa338f6bb273c4a2911a4333fec8f01eb4b83de27c1b599c7eb2"
 dependencies = [
  "async-fs-io",
  "tokio",
@@ -1742,7 +1742,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1965,7 +1965,7 @@ dependencies = [
  "getrandom 0.4.3",
  "once_cell",
  "rustix",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -2317,7 +2317,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
