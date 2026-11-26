@@ -172,7 +172,7 @@ dependencies = [
 
 [[package]]
 name = "cargo-fmt-toml"
-version = "1.0.32"
+version = "1.0.33"
 dependencies = [
  "anyhow",
  "async-fs-io",
