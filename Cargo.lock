@@ -199,9 +199,9 @@ dependencies = [
 
 [[package]]
 name = "cargo-plugin-utils"
-version = "0.0.39"
+version = "0.0.40"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "32b96088339650792a84ba1d0f762425542ac0d0374daad7b96f2df4672ea05d"
+checksum = "adf64ffe7257c3a3cf88145a3b0084ba6e79f1838ab2cf9da78789b9e8abbca2"
 dependencies = [
  "anyhow",
  "cargo_metadata",
@@ -2415,7 +2415,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7d6f32a0ff4a9f6f01231eb2059cc85479330739333e0e58cadf03b6af2cca10"
 dependencies = [
  "cfg-if",
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
