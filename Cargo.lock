@@ -340,9 +340,9 @@ checksum = "7704b5fdd17b18ae31c4c1da5a2e0305a2bf17b5249300a9ee9ed7b72114c636"
 
 [[package]]
 name = "crc32fast"
-version = "1.5.5"
+version = "1.5.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b929dd2a135771f40afabd1073f85eed59c800b7c61901e5c254270497dad64"
+checksum = "fd9ae8fcb3ea71b0b26338b4ffb13006bb175de8fd07921089a906ce7e5e6945"
 dependencies = [
  "cfg-if",
 ]
@@ -459,7 +459,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e35d6e78f4cebb90e51d543db8fe41528851d6deeef6ef21ebd4bfdc1e784776"
 dependencies = [
  "libc",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -635,27 +635,27 @@ dependencies = [
 
 [[package]]
 name = "gix-bitmap"
-version = "0.6.1"
+version = "0.6.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "422cd23418fd80e9e965595323975d72abd6364a66ff8f0daade5c105a7f35d2"
+checksum = "9543567ee22142c81fdf75b2811160bec749a5b9f48665e4763f88b1789b8612"
 dependencies = [
  "gix-error",
 ]
 
 [[package]]
 name = "gix-chunk"
-version = "0.10.1"
+version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc6a775aba54f0d65698126cc4214b6bf8ddb208312e4ef4240dfe34b0697b87"
+checksum = "60cd5f0e47ffae98bad241ccbc031693765004fb4c2a419f7fda2963232af1e3"
 dependencies = [
  "gix-error",
 ]
 
 [[package]]
 name = "gix-command"
-version = "0.12.1"
+version = "0.12.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "df63215f103299169e239dfe76f5cfa4a3d6d4adf69a01774085e3e0423cba34"
+checksum = "2986e78ebad43510ccd7dd18bd9f22e9afd52f2de791e2979b9c715bacb6f0a8"
 dependencies = [
  "bstr",
  "gix-error",
@@ -700,9 +700,9 @@ dependencies = [
 
 [[package]]
 name = "gix-config-value"
-version = "0.21.1"
+version = "0.21.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6cdada8bd9c97dc6522505c08226d9c88f0a1286f2c06b9e1bf51c3bf7ad7b2b"
+checksum = "d7666081ef0ecc5e1dc54bc6ce16dac9d7b9490780f6c130393ef9e50c909d4a"
 dependencies = [
  "bitflags 2.13.2",
  "bstr",
@@ -1728,7 +1728,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -1951,7 +1951,7 @@ dependencies = [
  "getrandom",
  "once_cell",
  "rustix",
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -2293,7 +2293,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.61.2",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -2440,9 +2440,9 @@ dependencies = [
 
 [[package]]
 name = "zlib-rs"
-version = "0.6.8"
+version = "0.6.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b268e58e7c693d7c271f93ffc4ba3b380412554231c85bf61ca7af91042a4112"
+checksum = "aa76918995d776d9dd34d371030be228d021137449771493d56e29f77e4148ac"
 
 [[package]]
 name = "zmij"
